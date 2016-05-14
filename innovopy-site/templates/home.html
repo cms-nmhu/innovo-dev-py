@@ -44,75 +44,20 @@
 		  fill: none;
 		  pointer-events: all;
 		}
-    
 	</style>
+
 	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script src="//d3js.org/topojson.v1.min.js"></script>
-	<script src="{% static 'js/graph-home.js' %}" charset="utf-8"></script>
+	
 {% endblock head %}
 
-
-{% block page_header_row %}
-	
-{% endblock page_header_row %}
-
+{% block page_header_row %}{% endblock page_header_row %}
 
 {% block page_body_row %}
-	<div id="map" class="col-md-12 content text-center">
-		
-		<script type="text/javascript">
-			var width = 960,
-			    height = 960,
-			    scale0 = (width - 1) / 2 / Math.PI;
-			var projection = d3.geo.mercator();
-			var zoom = d3.behavior.zoom()
-			    .translate([width / 2, height / 2])
-			    .scale(scale0)
-			    .scaleExtent([scale0, 8 * scale0])
-			    .on("zoom", zoomed);
-			var path = d3.geo.path()
-			    .projection(projection);
-			var svg = d3.select("#map").append("svg")
-			    .attr("width", width)
-			    .attr("height", height)
-			  .append("g");
-			var g = svg.append("g");
-			svg.append("rect")
-			    .attr("class", "overlay")
-			    .attr("width", width)
-			    .attr("height", height);
-			svg
-			    .call(zoom)
-			    .call(zoom.event);
-			d3.json("{% static 'data/world-110m.json' %}", function(error, world) {
-			  if (error) throw error;
-			  g.append("path")
-			      .datum({type: "Sphere"})
-			      .attr("class", "sphere")
-			      .attr("d", path);
-			  g.append("path")
-			      .datum(topojson.merge(world, world.objects.countries.geometries))
-			      .attr("class", "land")
-			      .attr("d", path);
-			  g.append("path")
-			      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-			      .attr("class", "boundary")
-			      .attr("d", path);
-			});
-			function zoomed() {
-			  console.log(zoom.scale());
-			  projection
-			      .translate(zoom.translate())
-			      .scale(zoom.scale());
-			  g.selectAll("path")
-			      .attr("d", path);
-			}
-			d3.select(self.frameElement).style("height", height + "px");
-		</script>
-			
-	</div>
+	<div id="map" class="col-md-12 content text-center"></div>
 {% endblock page_body_row %}
 
 {% block js_include %}
-
+	<script src="{% static 'js/map.js' %}" charset="utf-8"></script>
+	<!-- <script src="{% static 'js/net.js' %}" charset="utf-8"></script> -->
 {% endblock js_include %}

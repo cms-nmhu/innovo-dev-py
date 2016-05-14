@@ -1,11 +1,11 @@
 {
 	"nodes":[
-		{"name":"Freddie Freeloader","group":1,"mag":20,"type":"user"},
-		{"name":"Johhny Coal","group":1,"mag":40,"type":"user"},
-		{"name":"Highlands University","group":1,"mag":20,"type":"university"},
-		{"name":"Prince Perfect","group":1,"mag":10,"type":"user"},
-		{"name":"How Tos","group":2,"mag":10,"type":"book"},
-		{"name":"HNLab","group":2,"mag":10,"type":"flask"}
+		{"name":"Ohio State","group":1,"mag":20,"type":"user","lat":39.999063,"lon":-83.017339},
+		{"name":"Johhny Coal","group":1,"mag":40,"type":"user","lat":0,"lon":0},
+		{"name":"Highlands University","group":1,"mag":20,"type":"university","lat":35.594214,"lon":-105.222798},
+		{"name":"Prince Perfect","group":1,"mag":10,"type":"user","lat":0,"lon":0},
+		{"name":"How Tos","group":2,"mag":10,"type":"book","lat":0,"lon":0},
+		{"name":"HNLab","group":2,"mag":10,"type":"flask","lat":0,"lon":0}
 	],
 	"links":[
 		{"source":0,"target":1,"mag":"1"},
