@@ -14,19 +14,82 @@
 
 {% block page_body_row %}
 	<div class="col-md-12 content">
-		<h2>richard was here</h2>
-		{% for k, v in asset_properties.items %}
-			<p>{{ k }}: {{ v }}</p>
+		<h2>{{ object.title }}</h2>
 
-		{% endfor %}
+			<dl class="dl-horizontal">
+				<dt>MANUFACTURER</dt>
+				<dd>{{ object.manufacturer }} (<a href="{{ object.manufacturer_website }}" target="_blank">manufacturer's website</a>)</dd>
 		
+				<dt>MODEL</dt>
+				<dd>{{ object.model_name }}</dd>
+
+				<dt>SERIAL NUBER</dt>
+				<dd>{{ object.serial_no }}</dd>
+			</dl>
+	</div>
+
+	<div class="col-md-4 content"> <!-- LEFT SIDE -->
+		<div class="row">
+			<div class="col-md-12 content">
 		{% if object.image %}
-			<img src="/media/{{object.image}}">
+			<p><img src="/media/{{object.image}}"></p>
 		{% endif %}
 		
-		{% for img in object.related_media.all %}
+		<!--{% for img in object.related_media.all %}
 			<img src="/media/{{img}}" style="width: 25%">
-		{% endfor %}
+		{% endfor %}-->
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 content">			
+
+				<div class="panel panel-info">
+				  <div class="panel-heading">Categories</div>
+	              <div class="panel-body">
+	              <p>...</p></div>
+				</div>
+			</div>
+		</div>				
+	</div>
+
+	<div class="col-md-8 content"> <!-- RIGHT SIDE -->
+			<dl class="dl-horizontal">
+				<dt>LOCATION</dt>
+				<dd>{{ object.organization.org_site }}, {{ object.organization.org_site.address }}</dd>
+		
+				<dt>BUILDING</dt>
+				<dd>{{ object.building }}</dd>
+
+				<dt>ROOM</dt>
+				<dd>{{ object.room }}</dd>
+
+				<dt>CONTACT</dt>
+				<dd>{{ object.contact_1_name }} (<a href="mailto://{{ object.contact_1_email }}" target="_blank">E-mail</a>)</dd>				
+			</dl>		
+			<br>
+
+			<div class="panel panel-info">
+			  <div class="panel-heading">Description</div>
+              <div class="panel-body">
+              <p>{{ object.full_desc }}</p></div>
+			</div>
+
+			<div class="panel panel-info">
+			  <div class="panel-heading">Specification</div>
+              <div class="panel-body">
+              <ul>
+              	{% for i in object.get_specification_as_list %}
+              	<li>{{ i }}</li>
+              	{% endfor %}
+              </ul></div>	
+			</div>			
+	</div>
+
+
+		
+		
+
 	
 	</div>
 {% endblock page_body_row %}

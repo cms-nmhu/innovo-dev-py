@@ -63,6 +63,10 @@ class Asset(models.Model):
             d[field] = prop or ''
         return d
 
+    def get_specification_as_list(self):
+        items = self.specification.split('*')
+        return items
+
     def get_absolute_url(self):
         return reverse('asset', args=[self.id])
 
