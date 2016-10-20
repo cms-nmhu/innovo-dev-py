@@ -24,7 +24,12 @@ class SubOrganizationView(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(SubOrganizationView, self).get_context_data(**kwargs)
-		context['assets'] = self.get_object().assets.all()
+		assets = self.get_object().assets.all()
+		manufacturers = {}
+		for i in assets:
+			manufacturers[i.manufacturer] = i.manufacturer_website
+		context['manufacturers'] = manufacturers
+		context['assets'] = assets
 		return context
 
 
