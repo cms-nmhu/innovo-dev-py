@@ -32,3 +32,9 @@ a.clean:link { color: gray; text-decoration: none; }
 
 /*background colors*/
 .bg-gray {background-color: #BDBDBD;}
+
+.container-fluid dt {
+	width: auto;
+	margin-left: auto;
+	display: inline-block;
+}
