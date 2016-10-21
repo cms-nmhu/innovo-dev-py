@@ -64,9 +64,14 @@ class Asset(models.Model):
         return d
 
     def get_specification_as_list(self):
-        items = self.specification.split('*')
+        items = []
+        try:
+            items = self.specification.split('*')
+        except:
+            # specification is null. proceed silently
+            pass
         return items
-
+        
     def get_absolute_url(self):
         return reverse('asset', args=[self.id])
 
