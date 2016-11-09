@@ -33,7 +33,7 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading">Manufacturers</div>
 	              <div class="panel-body">
-	              <ul>{% for k, v in manufacturers.items %} <li><a href="" class="filter_btn" data-filter="{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
+	              <ul>{% for k, v in manufacturers.items %} <li><a href="" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
 				</div>
 
 				<div class="panel panel-info">
@@ -48,15 +48,16 @@
 	<div class="col-md-8 content"> <!-- RIGHT SIDE -->
 		
 		<div class="row">
-			<div class="col-md-10 content">
+			<div class="col-md-10 content filterdata">
 
 
 				{% for asset in assets %} 
-				<div class="panel panel-success {{ asset.manufacturer|slugify }}">
+				<div class="item name {{ asset.manufacturer|slugify }}">
+				<div class="panel panel-success">
 				  <div class="panel-heading"><h4><a href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
 	              <div class="panel-body">
 	              	<div class="col-md-4 content">
-	              		<p>Image</p>
+	              		<p><img src="{{ asset.image.url }}" width="200px"></p>
 	              	</div>
 	              	<div class="col-md-8 content">
 	              		<p>{{ asset.short_desc }}</p>
@@ -67,6 +68,7 @@
 	              	</div>	
 	              </div>	              
 				</div>	
+			</div>
 				{% endfor %}
 
 			</div>
@@ -78,4 +80,42 @@
 	
 {% endblock page_body_row %}
 {% block js_include %}
+<script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			
+			var $grid = $('.filterdata').isotope({
+				  itemSelector: '.item',
+				  //layoutMode: 'fitRows',
+				  
+				//   getSortData: {
+				// 	name: '.name' 
+				// }				  
+			});		
+
+			// bind filter button click
+			$('.filter_btn').on( 'click', function() {
+				var filterValue = $( this ).attr('data-filter');
+				$grid.isotope({ filter: filterValue });
+			});
+
+			// bind sort button click
+			$('#sort-btn').on( 'click', function() {
+				var sortbyval = $( this ).attr('data-sort-by');
+				var order = "";
+                if ($(this).attr("data-order")==="asc") {
+                    order = true;
+                    $(this).attr("data-order", "");
+                } else {
+                    order = false;
+                    $(this).attr("data-order", "asc");
+                }
+
+				$grid.isotope({ sortBy : sortbyval, sortAscending: order });
+				console.log('sorting?' + sortbyval);
+			});
+
+		});  
+    </script>
 {% endblock js_include %}

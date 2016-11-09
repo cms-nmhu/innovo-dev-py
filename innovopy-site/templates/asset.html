@@ -31,13 +31,9 @@
 	<div class="col-md-4 content"> <!-- LEFT SIDE -->
 		<div class="row">
 			<div class="col-md-12 content">
-		{% if object.image %}
-			<p><img src="/media/{{object.image}}"></p>
-		{% endif %}
-		
-		<!--{% for img in object.related_media.all %}
-			<img src="/media/{{img}}" style="width: 25%">
-		{% endfor %}-->
+			{% if object.image %}
+			<p><img src="{{object.image.url}}" height="100%" width="100%"></p>
+			{% endif %}
 			</div>
 		</div>
 

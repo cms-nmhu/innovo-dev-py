@@ -38,3 +38,29 @@ a.clean:link { color: gray; text-decoration: none; }
 	margin-left: auto;
 	display: inline-block;
 }
+
+#tree ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#tree ul ul {
+	background: url(/static/img/tree_line.png) repeat-y;
+	margin-left: 10px;
+}
+
+#tree ul ul>li {
+	margin: 0;
+	padding: 0 0 0 14px;
+	line-height: 20px;
+	background: url(/static/img/tree_node.png) no-repeat;
+}
+
+#tree ul ul li.last_child {
+	background: #fff url(/static/img/tree_lastnode.png) no-repeat;
+}
+
+#tree ul ul li:last-child {
+	background: #fff url(/static/img/tree_lastnode.png) no-repeat;
+}

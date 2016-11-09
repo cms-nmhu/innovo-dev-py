@@ -10,6 +10,25 @@
 
 {% block page_body_row %}
 	<div class="col-md-6 content">	
-	{% for org in suborgs %} <p><a href="{% url 'unit' org.id %}" class="btn btn-xs clean">{{ org.name }}</a></p> {% endfor %}	
+	{% for org in suborgs %} <p><a href="{% url 'unit' org.id %}" class="btn btn-xs clean">{{ org.name }}</a></p> {% endfor %}
 	</div>	
+
+	<div id="tree">
+		
+	<ul>
+		<li><a href="http://equipment.lboro.ac.uk/browse/ou-2-Loughborough-University"> Loughborough University </a> <span class="count">(0)</span>
+			<ul>
+			<li><a href="http://equipment.lboro.ac.uk/browse/ou-11-Design-School"> Design School </a> <span class="count">(0)</span>
+			<li><a href="http://equipment.lboro.ac.uk/browse/ou-33-Interdisciplinary-Research-Centres"> Interdisciplinary Research Centres </a> <span class="count">(0)</span>
+				<ul>
+				<li><a href="http://equipment.lboro.ac.uk/browse/ou-24-Centre-for-Biological-Engineering-CBE-"> Centre for Biological Engineering (CBE) </a> <span class="count">(0)</span>
+				</ul>
+			<li><a href="http://equipment.lboro.ac.uk/browse/ou-27-School-of-Aeronautical-Automotive-Chemical-and-Materials-Engineering"> School of Aeronautical, Automotive, Chemical and Materials Engineering </a> <span class="count">(1)</span>
+				<ul>
+				<li><a href="http://equipment.lboro.ac.uk/browse/ou-6-Aeronautical-and-Automotive-Engineering"> Aeronautical and Automotive Engineering </a> <span class="count">(8)</span>
+				<li><a href="http://equipment.lboro.ac.uk/browse/ou-7-Chemical-Engineering"> Chemical Engineering </a> <span class="count">(0)</span>
+				<li><a href="http://equipment.lboro.ac.uk/browse/ou-3-Materials"> Materials </a> <span class="count">(33)</span>
+				</ul>	
+	</div>
+	</div>			
 {% endblock page_body_row %}

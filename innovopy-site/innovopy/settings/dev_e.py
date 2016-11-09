@@ -42,3 +42,6 @@ DATABASES = {
 }
 
 # STATIC_ROOT = os.path.join(PROJ_DIR.child('static'))
+
+MEDIA_ROOT = '/var/www/html/media/'
+MEDIA_URL = 'http://localhost/media/'
