@@ -45,19 +45,24 @@
 		  pointer-events: all;
 		}
 	</style>
-
-	<script src="//d3js.org/d3.v3.min.js"></script>
-	<script src="//d3js.org/topojson.v1.min.js"></script>
+	<script type="text/javascript">
+		var worldmap_data = "{% static 'data/world-110m.json' %}";
+		var graph_data = "{% static 'data/graph.json' %}";
+	</script>
+	<script src="{% static 'js/d3.min.js' %}" charset="utf-8"></script>
+	<script src="{% static 'js/topojson.v1.min.js' %}" charset="utf-8"></script><script src="{% static 'js/graph-home.js' %}" charset="utf-8"></script>
 	
+
 {% endblock head %}
 
 {% block page_header_row %}{% endblock page_header_row %}
 
 {% block page_body_row %}
-	<div id="map" class="col-md-12 content text-center"></div>
+	<div id="map" class="col-md-12 content text-center">
+			<script src="{% static 'js/mapdemo.js' %}" charset="utf-8"></script>
+	</div>
 {% endblock page_body_row %}
 
 {% block js_include %}
-	<script src="{% static 'js/map.js' %}" charset="utf-8"></script>
-	<!-- <script src="{% static 'js/net.js' %}" charset="utf-8"></script> -->
 {% endblock js_include %}
+

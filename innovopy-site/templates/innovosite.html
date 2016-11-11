@@ -10,7 +10,16 @@
 
 {% block page_body_row %}
 	<div class="col-md-6 content">	
-	{% for org in suborgs %} <p><a href="{% url 'unit' org.id %}" class="btn btn-xs clean">{{ org.name }}</a></p> {% endfor %}
+	{% for site in suborgs %}
+		{% for k, v in site.items %}
+		<p>
+			{{v}}
+			{# <a href="{% url 'unit' org.id %}" class="btn btn-xs clean">{{ org.name }}</a> #}
+			}
+		</p>
+		{% endfor %}
+
+	{% endfor %}
 	</div>	
 
 	<div id="tree">

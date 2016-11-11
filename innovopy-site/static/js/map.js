@@ -29,7 +29,7 @@ svg
     .call(zoom)
     .call(zoom.event);
 
-d3.json("/static/data/world-110m.json", function(error, world) {
+d3.json(worldmap_data, function(error, world) {
 	if (error) throw error;
 	g.append("path")
 	  .datum({type: "Sphere"})
@@ -48,7 +48,7 @@ d3.json("/static/data/world-110m.json", function(error, world) {
 });
 
 
-d3.json("/static/data/graph.json", function(error, data) { 
+d3.json(worldmap_data, function(error, data) { 
 	if (error) throw error;
 	var node = g.selectAll(".node")
         .data(data.nodes)

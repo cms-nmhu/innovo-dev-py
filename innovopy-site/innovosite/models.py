@@ -37,7 +37,7 @@ class SubOrganization(models.Model):
     url = models.URLField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     org_site = models.ForeignKey(Innovosite, related_name = 'suborganizations')
-    org_parent = models.ForeignKey('SubOrganization', null=True, blank=True)
+    org_parent = models.ForeignKey('SubOrganization', null=True, blank=True, related_name = 'childorgs')
 
     documents = models.ManyToManyField(DocumentFile, related_name='organization_documents', blank=True)
     

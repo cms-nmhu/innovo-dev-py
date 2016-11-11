@@ -7,9 +7,40 @@ class InnovositeView(DetailView):
 	model = Innovosite
 	template_name = 'innovosite.html'
 
+
+	def get_nodes(self, orgstack, org, level):
+	    print level, org
+	    d = {}
+	    for i in org.childorgs.all():
+	        try:
+	            o = orgstack.pop(i.id)
+	            d[o] = self.get_nodes(orgstack, o, level+'-')
+	        except:
+	            pass
+	    return d
+
 	def get_context_data(self, **kwargs):
 		context = super(InnovositeView, self).get_context_data(**kwargs)
-		context['suborgs'] = self.get_object().suborganizations.all()
+
+		orgs = self.get_object().suborganizations.all()
+		orgstack = {i.id : i for i in orgs}
+		subs = []
+		for i in orgs:
+		    try:
+		        o = orgstack.pop(i.id)
+		        d = {o: self.get_nodes(orgstack, o, '-')}
+		        subs.append(d)
+		    except:
+		        pass
+
+		# print s
+
+		# for n in subs:
+		#     print_node(n, '-')
+
+
+
+		context['suborgs'] = subs #self.get_object().suborganizations.all()
 		return context
 
 
