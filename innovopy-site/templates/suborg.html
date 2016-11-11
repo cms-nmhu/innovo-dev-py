@@ -33,7 +33,7 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading">Manufacturers</div>
 	              <div class="panel-body">
-	              <ul>{% for k, v in manufacturers.items %} <li><a href="" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
+	              <ul class="grid_manuf">{% for k, v in manufacturers.items %} <li class="manufname" data-sort="{{ k }}"><a href="#" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
 				</div>
 
 				<div class="panel panel-info">
@@ -52,9 +52,9 @@
 
 
 				{% for asset in assets %} 
-				<div class="item name {{ asset.manufacturer|slugify }}">
+				<div class="item {{ asset.manufacturer|slugify }}" data-sort="{{asset.title}}">
 				<div class="panel panel-success">
-				  <div class="panel-heading"><h4><a href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
+				  <div class="panel-heading"><h4><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
 	              <div class="panel-body">
 	              	<div class="col-md-4 content">
 	              		<p><img src="{{ asset.image.url }}" width="200px"></p>
@@ -68,7 +68,7 @@
 	              	</div>	
 	              </div>	              
 				</div>	
-			</div>
+			    </div>
 				{% endfor %}
 
 			</div>
@@ -87,12 +87,24 @@
 			
 			var $grid = $('.filterdata').isotope({
 				  itemSelector: '.item',
-				  //layoutMode: 'fitRows',
+				  layoutMode: 'fitRows',
 				  
-				//   getSortData: {
-				// 	name: '.name' 
-				// }				  
+				  getSortData: {
+					name: '[data-sort]' 
+				}				  
 			});		
+
+			var $grid_manuf = $('.grid_manuf').isotope({
+				  itemSelector: '.manufname',
+				  // layoutMode: 'fitRows',
+				  
+				  getSortData: {
+					manufname: '[data-sort]' 
+				}				  
+			});
+
+			$grid.isotope({ sortBy : 'name', sortAscending: "asc" });
+			$grid_manuf.isotope({ sortBy : 'manufname', sortAscending: "asc" });
 
 			// bind filter button click
 			$('.filter_btn').on( 'click', function() {
@@ -112,7 +124,7 @@
                     $(this).attr("data-order", "asc");
                 }
 
-				$grid.isotope({ sortBy : sortbyval, sortAscending: order });
+				
 				console.log('sorting?' + sortbyval);
 			});
 
