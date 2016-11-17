@@ -9,20 +9,31 @@
 
 
 {% block page_body_row %}
-	<div class="col-md-6 content">	
+	<div class="col-md-6 content">
+	
 	{% for site in suborgs %}
-		{% for k, v in site.items %}
-		<p>
-			{{v}}
-			{# <a href="{% url 'unit' org.id %}" class="btn btn-xs clean">{{ org.name }}</a> #}
-			}
-		</p>
+		<ul class="">
+		{% for a, b in site.items %}
+			<li> {{ a }} </li>
+			{% if b.items %}
+				<ul class="">
+					{% for c, d in b.items %}
+						<li> {{ c }} </li>
+						{% if d.items %}
+							<ul class="">{% for d, e in d.items %}<li> {{ d }} </li>{% endfor %}</ul>
+						
+							
+						{% endif %}
+					{% endfor %}
+				</ul>
+			{% endif %}
 		{% endfor %}
+		</ul>
 
 	{% endfor %}
 	</div>	
 
-	<div id="tree">
+	<!-- <div id="tree">
 		
 	<ul>
 		<li><a href="http://equipment.lboro.ac.uk/browse/ou-2-Loughborough-University"> Loughborough University </a> <span class="count">(0)</span>
@@ -38,6 +49,6 @@
 				<li><a href="http://equipment.lboro.ac.uk/browse/ou-7-Chemical-Engineering"> Chemical Engineering </a> <span class="count">(0)</span>
 				<li><a href="http://equipment.lboro.ac.uk/browse/ou-3-Materials"> Materials </a> <span class="count">(33)</span>
 				</ul>	
-	</div>
-	</div>			
+	</div> -->
+	<!-- </div>			 -->
 {% endblock page_body_row %}
