@@ -12,7 +12,7 @@ var force = d3.layout.force()
     .charge(-100)
     .size([width, height]);
 
-d3.json("/static/data/graph.json", function(error, json) {
+d3.json(graph_data, function(error, json) {
     if (error) throw error;
 
     force
@@ -34,8 +34,6 @@ d3.json("/static/data/graph.json", function(error, json) {
         .attr("height", 300)
         .call(force.drag);
 
-        
-
     // node.append("circle")
     //     .attr("r", function(d) { return d.mag });
 
@@ -44,8 +42,6 @@ d3.json("/static/data/graph.json", function(error, json) {
         .attr("y", -20)
         .attr("width",  100)
         .attr("height", 100)
-        .attr("cx", function(d) { return projection([d.lon, d.lat])[0] })
-        .attr("cy", function(d) { return projection([d.lon, d.lat])[1] })
         .html(function(d) {
             return "<i class='fa fa-2x fa-"+d.type+"'></i> " + d.name
         });

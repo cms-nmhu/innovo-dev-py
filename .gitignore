@@ -47,4 +47,5 @@ ENV/
 # Project specific exclusions
 prod.py
 *prod.py
+localram.py
 prod_wsgi.py

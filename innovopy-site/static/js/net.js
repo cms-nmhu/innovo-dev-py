@@ -4,7 +4,7 @@ var force = d3.layout.force()
     .charge(-100)
     .size([width, height]);
 
-d3.json("/static/data/graph.json", function(error, json) {
+d3.json(graph_data, function(error, json) {
     if (error) throw error;
 
     // force

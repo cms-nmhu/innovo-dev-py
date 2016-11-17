@@ -4,12 +4,12 @@ from django.db import models
 from core.models import DocumentFile
 
 ORG_TYPES = (
-    ('college', 'college'),
-    ('department', 'department'),
-    ('lab', 'lab'),
-    ('research group', 'research group'),
-    ('division', 'division'),
-    ('other', 'other')
+    (0, 'college'),
+    (1, 'department'),
+    (2, 'lab'),
+    (3, 'research group'),
+    (4, 'division'),
+    (5, 'other')
 )
 
 class Innovosite(models.Model):
@@ -32,12 +32,12 @@ class Innovosite(models.Model):
 
 class SubOrganization(models.Model):
     name = models.CharField(max_length=256)
-    org_type = models.CharField(max_length=48, choices=ORG_TYPES, blank=True)
+    org_type = models.IntegerField(choices=ORG_TYPES, default=5)
     description = models.TextField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     org_site = models.ForeignKey(Innovosite, related_name = 'suborganizations')
-    org_parent = models.ForeignKey('SubOrganization', null=True, blank=True)
+    org_parent = models.ForeignKey('SubOrganization', null=True, blank=True, related_name = 'childorgs')
 
     documents = models.ManyToManyField(DocumentFile, related_name='organization_documents', blank=True)
     
