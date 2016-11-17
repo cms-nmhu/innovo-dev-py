@@ -45,10 +45,10 @@
 		</div>				
 	</div>
 
-	<div class="col-md-8 content"> <!-- RIGHT SIDE -->
+	<div class="col-md-8"> <!-- RIGHT SIDE -->
 		
 		<div class="row">
-			<div class="col-md-10 content filterdata">
+			<div class="col-md-10 filterdata">
 
 
 				{% for asset in assets %} 
@@ -57,7 +57,7 @@
 				  <div class="panel-heading"><h4><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
 	              <div class="panel-body">
 	              	<div class="col-md-4 content">
-	              		<p><img src="{{ asset.image.url }}" width="200px"></p>
+	              		<img src="{{ asset.image.url }}" width="200px">
 	              	</div>
 	              	<div class="col-md-8 content">
 	              		<p>{{ asset.short_desc }}</p>
@@ -87,7 +87,7 @@
 			
 			var $grid = $('.filterdata').isotope({
 				  itemSelector: '.item',
-				  layoutMode: 'fitRows',
+				  layoutMode: 'vertical',
 				  
 				  getSortData: {
 					name: '[data-sort]' 
@@ -96,7 +96,7 @@
 
 			var $grid_manuf = $('.grid_manuf').isotope({
 				  itemSelector: '.manufname',
-				  // layoutMode: 'fitRows',
+				  layoutMode: 'vertical',
 				  
 				  getSortData: {
 					manufname: '[data-sort]' 
