@@ -12,21 +12,25 @@
 	<div class="col-md-6 content">
 	
 	{% for site in suborgs %}
-		<ul class="">
+		<ul>
 		{% for a, b in site.items %}
 			<li> {{ a }} </li>
-			{% if b.items %}
-				<ul class="">
-					{% for c, d in b.items %}
-						<li> {{ c }} </li>
-						{% if d.items %}
-							<ul class="">{% for d, e in d.items %}<li> {{ d }} </li>{% endfor %}</ul>
-						
-							
-						{% endif %}
-					{% endfor %}
-				</ul>
-			{% endif %}
+			<ul>
+				{% for c, d in b.items %}
+					<li> {{ c }} </li>
+					<ul>
+						{% for e, f in d.items %}
+							<li> {{ e }} </li>
+							<ul>
+								{% for g, h in f.items %}
+									<li> {{ g }} </li>
+									
+								{% endfor %}
+							</ul>
+						{% endfor %}
+					</ul>
+				{% endfor %}
+			</ul>
 		{% endfor %}
 		</ul>
 

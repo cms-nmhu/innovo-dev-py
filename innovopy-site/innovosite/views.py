@@ -22,7 +22,7 @@ class InnovositeView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(InnovositeView, self).get_context_data(**kwargs)
 
-		orgs = self.get_object().suborganizations.all().order_by('org_type')
+		orgs = self.get_object().suborganizations.all().order_by('org_type', 'name')
 		print orgs[0]
 		orgstack = {i.id : i for i in orgs}
 		subs = []
