@@ -25,6 +25,12 @@
 			<div class="col-md-10 content">			
 
 				<div class="panel panel-info">
+				  <div class="panel-heading">Organizations</div>
+	              <div class="panel-body">
+	              <ul class="grid_org">{% for k in orgs %} <li class="orgname" data-sort="{{ k }}"><a href="#" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>
+				</div>
+
+				<div class="panel panel-info">
 				  <div class="panel-heading">Categories</div>
 	              <div class="panel-body">
 	              <p>aaa</p></div>
@@ -45,25 +51,26 @@
 		</div>				
 	</div>
 
-	<div class="col-md-8 content"> <!-- RIGHT SIDE -->
+	<div class="col-md-8"> <!-- RIGHT SIDE -->
 		
 		<div class="row">
-			<div class="col-md-10 content filterdata">
+			<div class="col-md-10 filterdata">
 
 
 				{% for asset in assets %} 
-				<div class="item {{ asset.manufacturer|slugify }}" data-sort="{{asset.title}}">
+				<div class="item {{ asset.manufacturer|slugify }} {{ asset.organization|slugify }}" data-sort="{{asset.title}}">
 				<div class="panel panel-success">
 				  <div class="panel-heading"><h4><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
 	              <div class="panel-body">
 	              	<div class="col-md-4 content">
-	              		<p><img src="{{ asset.image.url }}" width="200px"></p>
+	              		{% if asset.image %}<img src="{{ asset.image.url }}" width="200px">{% endif %}
 	              	</div>
 	              	<div class="col-md-8 content">
 	              		<p>{{ asset.short_desc }}</p>
 	              		<p><a href="{% url 'asset' asset.id %}">more details >></a></p>
 	              		<br>
 	              		<p><small><b>Manufacturer:</b> {{ asset.manufacturer }}</small></p>
+	              		<p><small><b>Organization:</b> {{ asset.organization }}</small></p>
 	              		<p><small><b>Technique:</b> ....</small></p>
 	              	</div>	
 	              </div>	              
@@ -87,7 +94,7 @@
 			
 			var $grid = $('.filterdata').isotope({
 				  itemSelector: '.item',
-				  layoutMode: 'fitRows',
+				  layoutMode: 'vertical',
 				  
 				  getSortData: {
 					name: '[data-sort]' 
@@ -96,10 +103,19 @@
 
 			var $grid_manuf = $('.grid_manuf').isotope({
 				  itemSelector: '.manufname',
-				  // layoutMode: 'fitRows',
+				  layoutMode: 'vertical',
 				  
 				  getSortData: {
 					manufname: '[data-sort]' 
+				}				  
+			});
+
+			var $grid_org = $('.grid_org').isotope({
+				  itemSelector: '.orgname',
+				  layoutMode: 'vertical',
+				  
+				  getSortData: {
+					orgname: '[data-sort]' 
 				}				  
 			});
 
