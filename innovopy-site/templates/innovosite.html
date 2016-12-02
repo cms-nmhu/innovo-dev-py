@@ -9,21 +9,21 @@
 
 
 {% block page_body_row %}
-	<div class="col-md-6 content">
+	<div id="tree" class="col-md-6 content">
 	
 	{% for site in suborgs %}
 		<ul>
 		{% for a, b in site.items %}
-			<li> {{ a }} </li>
+			<li><a href="{% url 'unit' a.id %}"> {{ a }} </a></li>
 			<ul>
 				{% for c, d in b.items %}
-					<li> {{ c }} </li>
+					<li><a href="{% url 'unit' c.id %}"> {{ c }} </a></li>
 					<ul>
 						{% for e, f in d.items %}
-							<li> {{ e }} </li>
+							<li><a href="{% url 'unit' e.id %}"> {{ e }} </a></li>
 							<ul>
 								{% for g, h in f.items %}
-									<li> {{ g }} </li>
+									<li><a href="{% url 'unit' g.id %}"> {{ g }} </a></li>
 									
 								{% endfor %}
 							</ul>
