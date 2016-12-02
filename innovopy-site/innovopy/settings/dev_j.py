@@ -34,7 +34,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'innovodevdb',
-        'USER': 'evgheni',
+        'USER': 'jhansi',
         'PASSWORD': '1',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -42,3 +42,7 @@ DATABASES = {
 }
 
 # STATIC_ROOT = os.path.join(PROJ_DIR.child('static'))
+
+MEDIA_ROOT = '/var/www/html/media/'
+MEDIA_URL = 'http://localhost/media/'
+
