@@ -9,7 +9,6 @@ class InnovositeView(DetailView):
 
 
 	def get_nodes(self, orgstack, org, level):
-	    print level, org
 	    d = {}
 	    for i in org.childorgs.all():
 	        try:
@@ -23,7 +22,6 @@ class InnovositeView(DetailView):
 		context = super(InnovositeView, self).get_context_data(**kwargs)
 
 		orgs = self.get_object().suborganizations.all().order_by('org_type', 'name')
-		print orgs[0]
 		orgstack = {i.id : i for i in orgs}
 		subs = []
 		for i in orgs:
