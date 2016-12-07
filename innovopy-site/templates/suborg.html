@@ -27,7 +27,7 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading">Organizations</div>
 	              <div class="panel-body">
-	              <ul class="grid_org">{% for k in orgs %} <li class="orgname" data-sort="{{ k }}"><a href="#" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>
+	              <ul class="grid_org">{% for k in orgs %} <li class="orgname" data-sort="{{ k }}"><a href="{% url 'unit' k.id %}" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>
 				</div>
 
 				<div class="panel panel-info">
