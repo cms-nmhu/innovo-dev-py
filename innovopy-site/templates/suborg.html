@@ -15,12 +15,6 @@
 {% block page_body_row %}
 
 	<div class="col-md-4 content"> <!-- LEFT SIDE -->
-		<!--<div class="row">
-			<div class="col-md-12 content">
-
-			</div>
-		</div>-->
-
 		<div class="row">
 			<div class="col-md-10 content">			
 
@@ -40,13 +34,7 @@
 				  <div class="panel-heading">Manufacturers</div>
 	              <div class="panel-body">
 	              <ul class="grid_manuf">{% for k, v in manufacturers.items %} <li class="manufname" data-sort="{{ k }}"><a href="#" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
-				</div>
-
-				<div class="panel panel-info">
-				  <div class="panel-heading">Techniques</div>
-	              <div class="panel-body">
-	              <p>aaa</p></div>	              
-				</div>				
+				</div>			
 			</div>
 		</div>				
 	</div>
@@ -56,25 +44,24 @@
 		<div class="row">
 			<div class="col-md-10 filterdata">
 
-
 				{% for asset in assets %} 
-				<div class="item {{ asset.manufacturer|slugify }} {{ asset.organization|slugify }}" data-sort="{{asset.title}}">
-				<div class="panel panel-success">
-				  <div class="panel-heading"><h4><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4></div>
-	              <div class="panel-body">
-	              	<div class="col-md-4 content">
-	              		{% if asset.image %}<img src="{{ asset.image.url }}" width="200px">{% endif %}
-	              	</div>
-	              	<div class="col-md-8 content">
+				<div class="item {{ asset.manufacturer|slugify }} {{ asset.organization|slugify }}" data-sort="{{asset.title}}">					
+				  <div class="well">
+					
+					<div class="media">
+
+					  <div class="media-left">
+					    {% if asset.image %}<img src="{{ asset.image.url }}" class="media-object" style="width:200px">{% endif %}
+					  </div>
+					  <div class="media-body">
+					    <h4 class="media-heading"><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4>
 	              		<p>{{ asset.short_desc }}</p>
-	              		<p><a href="{% url 'asset' asset.id %}">more details >></a></p>
 	              		<br>
 	              		<p><small><b>Manufacturer:</b> {{ asset.manufacturer }}</small></p>
 	              		<p><small><b>Organization:</b> {{ asset.organization }}</small></p>
-	              		<p><small><b>Technique:</b> ....</small></p>
-	              	</div>	
-	              </div>	              
-				</div>	
+					  </div>
+					</div>
+				  </div>
 			    </div>
 				{% endfor %}
 

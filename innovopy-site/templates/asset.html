@@ -32,7 +32,7 @@
 		<div class="row">
 			<div class="col-md-12 content">
 			{% if object.image %}
-			<p><img src="{{object.image.url}}" height="100%" width="100%"></p>
+			<p><a class="popupimage" href="{{object.image.url}}"><img width="100%" height="100%" src="{{object.image.url}}"></a></p>
 			{% endif %}
 			</div>
 		</div>
@@ -82,10 +82,24 @@
 			</div>			
 	</div>
 
-
+    <div class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">	
+			<img width="130%" src="">
+		</div>
+	  </div>
+	</div>
 		
-		
-
-	
 	</div>
 {% endblock page_body_row %}
+{% block js_include %}
+	<script>
+	$(document).ready(function(){
+		$('.popupimage').click(function(event){
+			event.preventDefault();
+			$('.modal img').attr('src', $(this).attr('href'));
+			$('.modal').modal('show');
+		});
+	});
+	</script>	
+{% endblock js_include %}
