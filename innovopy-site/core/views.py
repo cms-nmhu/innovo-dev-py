@@ -11,6 +11,7 @@ class AboutView(TemplateView):
 class ContactView(TemplateView):
 	template_name = 'contact.html'
 
-
+class UserView(DetailView):
+	template_name = 'user.html'
 
 
