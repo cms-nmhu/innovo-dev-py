@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 
@@ -12,6 +14,7 @@ class ContactView(TemplateView):
 	template_name = 'contact.html'
 
 class UserView(DetailView):
+	model = User
 	template_name = 'user.html'
 
 
