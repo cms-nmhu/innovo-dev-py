@@ -31,7 +31,11 @@ class InnovoUser(models.Model):
     photo = models.ImageField(blank=True, null=True)
 
     def get_prev_affiliations_as_list(self):
-        prev_affiliations = self.prev_affiliations.split('*')
+        try:
+            prev_affiliations = self.prev_affiliations.split('*')
+        except:
+            return []
+            
         return prev_affiliations
 
     def __unicode__(self):
