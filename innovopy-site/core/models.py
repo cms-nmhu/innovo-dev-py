@@ -4,11 +4,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 DEGREE_TYPES = (
-    (0, 'No Degree'),
+    (0, 'N/A'),
     (1, 'Associates'),
-    (2, 'Bachelors'),
-    (3, 'Masters'),
-    (4, 'Doctorate'),
+    (2, 'B.A.'),
+    (3, 'B.S.'),
+    (4, 'M.A.'),
+    (5, 'M.S.'),
+    (6, 'Ph.D.'),
+    (7, 'D.Sc.'),
+    (8, 'In Progress'),
 )
 
 class DocumentFile(models.Model):
@@ -26,6 +30,10 @@ class InnovoUser(models.Model):
     prev_positions = models.TextField(blank=True, null=True)
     photo = models.ImageField(blank=True, null=True)
 
+    def get_prev_affiliations_as_list(self):
+        prev_affiliations = self.prev_affiliations.split('*')
+        return prev_affiliations
+
     def __unicode__(self):
         return self.user.username
 
@@ -39,6 +47,11 @@ class Publication(models.Model):
     def __unicode__(self):
         return self.title
 
+class InnovoUserPublication(models.Model):
+    """docstring for InnovoUserPublication"""
+    innovouser = models.ForeignKey(InnovoUser)
+    publication = models.ForeignKey(Publication)
+        
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

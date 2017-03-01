@@ -17,4 +17,7 @@ class UserView(DetailView):
 	model = User
 	template_name = 'user.html'
 
-
+	def get_context_data(self, **kwargs):
+		context = super(UserView, self).get_context_data(**kwargs)
+		context['prev_affiliations'] = self.get_object().innovouser.get_prev_affiliations_as_list()
+		return context

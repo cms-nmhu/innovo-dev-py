@@ -1,4 +1,4 @@
-<!-- suborg.html -->
+<!-- user.html -->
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %} {{ block.super }} Sub Org{% endblock title %}
@@ -6,70 +6,81 @@
 {% block page_header_row %}
 	<div id="navbar" class="navbar-fixed navbar-left">
 		<ul class="nav navbar-nav">
-			<li><a href="{% url 'innovosite' object.org_site.id %}" class="clean">{{ object.org_site }}</a></li>
+			<li><a href="" class="clean">{{ object.org_site }}</a></li>
 		</ul>
 	</div><!--/.navbar-collapse -->
-	<div class="col-md-12"><h2>{{ object.name }}</h2></div>
+	<!--<div class="col-md-12"><h2>{{ object.name }}</h2></div>-->
 {% endblock page_header_row %}
 
 {% block page_body_row %}
 
-	<div class="col-md-4 content"> <!-- LEFT SIDE -->
+	<div class="col-md-8 content"> <!-- LEFT SIDE -->
 		<div class="row">
-			<div class="col-md-10 content">			
+			<div class="col-md-12 content">			
 
-				<div class="panel panel-info">
-				  <div class="panel-heading">Organizations</div>
-	              <div class="panel-body">
-	              <ul class="grid_org">{% for k in orgs %} <li class="orgname" data-sort="{{ k }}"><a href="{% url 'unit' k.id %}" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>
-				</div>
+				  <div class="well">
+					<div class="media">
+					  <div class="media-left">
+					    {% if object.innovouser.photo %}<img src="{{ object.innovouser.photo.url }}" class="media-object" style="width:200px">{% endif %}
+					  </div>
+					  <div class="media-body">
+					    <h2 class="media-heading"><b>{{ object.first_name }} {{ object.last_name }}</b></h2>
+	              		<br>
+	              		<p><h5>{{ object.innovouser.degree }}, {{ object.innovouser.get_degree_type_display }}</h5></p>
+	              		<p><h5><a href="http://www.nmhu.edu/" target="_blank">{{ object.innovouser.affiliation }}</a></h5></p>
+					  </div>
+					</div>
+				  </div>
 
-				<div class="panel panel-info">
-				  <div class="panel-heading">Categories</div>
-	              <div class="panel-body">
-	              <p></p></div>
-				</div>
+				  <div class="well">
+				  	<h3>Experience</h3>
+				  	<h4>Previous Affiliations</h4>
+						<ul>
+							{% for i in prev_affiliations %}
+			              	<li>{{ i }}</li>
+			              	{% endfor %}
 
-				<div class="panel panel-info">
-				  <div class="panel-heading">Manufacturers</div>
-	              <div class="panel-body">
-	              <ul class="grid_manuf">{% for k, v in manufacturers.items %} <li class="manufname" data-sort="{{ k }}"><a href="#" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>	              
-				</div>		
+		  			    </ul>			  			
+		  		  </div>			  	
 
-				<div class="panel panel-info">
-				  <div class="panel-heading">Researchers</div>
-	              <div class="panel-body">
-	                           
-				</div>	
+				  <div class="well">
+				  	<h3>Areas of Expertise</h3>
+					<span class="label label-primary">Primary</span>
+				  </div>
+
+				  <div class="well">
+				  	<h3>Featured Publications</h3>
+						<ul>
+		  					<li><h5></h5></li>
+		  			    </ul>
+				  </div>				  
+
 			</div>
 		</div>				
 	</div>
 
-	<div class="col-md-8"> <!-- RIGHT SIDE -->
+	<div class="col-md-4"> <!-- RIGHT SIDE -->
 		
 		<div class="row">
-			<div class="col-md-10 filterdata">
+			<div class="col-md-12 content">
 
-				{% for asset in assets %} 
-				<div class="item {{ asset.manufacturer|slugify }} {{ asset.organization|slugify }}" data-sort="{{asset.title}}">					
+							
 				  <div class="well">
-					
+				   <h3>Collaborators</h3>
 					<div class="media">
-
 					  <div class="media-left">
 					    {% if asset.image %}<img src="{{ asset.image.url }}" class="media-object" style="width:200px">{% endif %}
 					  </div>
 					  <div class="media-body">
-					    <h4 class="media-heading"><a class="name" href="{% url 'asset' asset.id %}">{{ asset.title }}</a></h4>
+					    <h4 class="media-heading"><a class="name" href="">{{ asset.title }}</a></h4>
 	              		<p>{{ asset.short_desc }}</p>
 	              		<br>
-	              		<p><small><b>Manufacturer:</b> {{ asset.manufacturer }}</small></p>
-	              		<p><small><b>Organization:</b> {{ asset.organization }}</small></p>
 					  </div>
 					</div>
 				  </div>
 			    </div>
-				{% endfor %}
+			    <!--{% for asset in assets %} 	-->	
+				<!--{% endfor %}-->
 
 			</div>
 		</div>	
