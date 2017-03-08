@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,6 +25,7 @@ from asset.views import AssetView
 
 urlpatterns = [
 	url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^search/', include('haystack.urls')),
 	url(r'^about/$', AboutView.as_view(), name='about'),
 	url(r'^contact/$', ContactView.as_view(), name='contact'),
     
