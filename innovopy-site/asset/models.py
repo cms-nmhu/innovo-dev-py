@@ -48,7 +48,7 @@ class Asset(models.Model):
     def get_as_dict_selected(self, fieldlist=None):
         d = OrderedDict()
         if not fieldlist:
-            fieldlist = ('title', 'building', 'room', 'short_desc', 'full_desc', 'contact_1_name', 'contact_1_email',)
+            fieldlist = ('title', 'building', 'room', 'short_desc', 'full_desc', 'contact_1_name')
         for field in fieldlist:
             prop = eval('self.'+field)
             d[field] = prop or ''
