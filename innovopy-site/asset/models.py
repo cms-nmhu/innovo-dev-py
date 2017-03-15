@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from collections import OrderedDict
 
 from django.db import models
+from django.contrib.auth.models import User
 
 from innovosite.models import Innovosite, SubOrganization, Building 
 from core.models import DocumentFile 
@@ -31,10 +32,7 @@ class Asset(models.Model):
     image = models.ImageField(null=True, blank=True)
     related_media = models.ManyToManyField(DocumentFile, blank=True)
 
-    contact_1_name = models.CharField(max_length=256, null=True, blank=True)
-    contact_1_email = models.CharField(max_length=256, null=True, blank=True)
-    contact_2_name = models.CharField(max_length=256, null=True, blank=True)
-    contact_2_email = models.CharField(max_length=256, null=True, blank=True)
+    contact_1_name = models.ForeignKey(User, null=True, blank=True)
 
     date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_of_purchase = models.DateTimeField(null=True, blank=True)
