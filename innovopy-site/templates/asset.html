@@ -60,8 +60,10 @@
 				<dt>ROOM</dt>
 				<dd>{{ object.room }}</dd>
 
+				{% if object.contact_1_name %}
 				<dt>CONTACT</dt>
-				<dd>{{ object.contact_1_name }} (<a href="mailto://{{ object.contact_1_email }}" target="_blank">E-mail</a>)</dd>				
+				<dd><a href="{% url 'user_view' object.contact_1_name.id %}">{{ object.contact_1_name.first_name }} {{ object.contact_1_name.last_name }}</a> (<a href="mailto://{{ object.contact_1_name.email }}" target="_blank">E-mail</a>)</dd>	
+				{% endif %}
 			</dl>		
 			<br>
 
