@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from collections import OrderedDict
 
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 from innovosite.models import Innovosite, SubOrganization, Building 
-from core.models import DocumentFile 
+from core.models import DocumentFile, Category
 
 AVAILABILITY = (
     ('available', 'available'),
@@ -48,7 +49,7 @@ class Asset(models.Model):
     def get_as_dict_selected(self, fieldlist=None):
         d = OrderedDict()
         if not fieldlist:
-            fieldlist = ('title', 'building', 'room', 'short_desc', 'full_desc', 'contact_1_name', 'contact_1_email',)
+            fieldlist = ('title', 'building', 'room', 'short_desc', 'full_desc', 'contact_1_name',)
         for field in fieldlist:
             prop = eval('self.'+field)
             d[field] = prop or ''
@@ -80,6 +81,9 @@ class Asset(models.Model):
         ordering = ['title']
 
                     
+class AssetCategory(models.Model):
+    asset = models.ForeignKey(Asset, related_name='asset_categories')
+    category = models.ForeignKey(Category, related_name='categorized_assets')
 
 
 

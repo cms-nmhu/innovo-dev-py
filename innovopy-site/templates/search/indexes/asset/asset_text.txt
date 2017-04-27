@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.room }}
+{{ object.short_desc }}
+{{ object.full_desc }}
+

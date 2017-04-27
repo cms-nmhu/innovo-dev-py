@@ -21,6 +21,7 @@ class DocumentFile(models.Model):
     def __unicode__(self):
         return self.file.name
 
+
 class InnovoUser(models.Model):
     user = models.OneToOneField(User)
     degree_type = models.IntegerField(choices=DEGREE_TYPES, blank=True, default=0)
@@ -50,6 +51,7 @@ class Publication(models.Model):
     
     def __unicode__(self):
         return self.title
+
 
 class InnovoUserPublication(models.Model):
     """docstring for InnovoUserPublication"""

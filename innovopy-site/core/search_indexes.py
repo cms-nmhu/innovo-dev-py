@@ -8,6 +8,8 @@ class AssetIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     title = indexes.CharField(model_attr='title')
     room = indexes.CharField(model_attr='room')
+    short_desc = indexes.CharField(model_attr='short_desc')
+    full_desc = indexes.CharField(model_attr='full_desc')
 
     def get_model(self):
         return Asset

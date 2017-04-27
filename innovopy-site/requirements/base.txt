@@ -1,4 +1,9 @@
-Django==1.9.5
+Django==1.11
+django-haystack==2.6.0
+elasticsearch==2.4.1
 Pillow==3.2.0
 psycopg2==2.6.1
+pytz==2017.2
 Unipath==1.1
+urllib3==1.20
+wheel==0.26.0
