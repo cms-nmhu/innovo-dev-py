@@ -20,17 +20,32 @@
 {% endblock page_header_row %}
 
 {% block page_body_row %}
-<div class="col-md-12 content">
+<div class="col-md-8 col-md-offset-2 content">
     {% if query %}
         <h3>Results</h3>
 
-        {% for result in page.object_list %}
-            <p>
-                <a href="{% url 'asset' result.object.pk %}">{{ result.object.title }}</a>
-            </p>
-        {% empty %}
-            <p>No results found.</p>
-        {% endfor %}
+        <div class="row">
+
+                {% for asset in page.object_list %}                   
+                  <div class="well">
+                    
+                    <div class="media">
+
+                      <div class="media-left">
+                        {% if asset.object.image %}<img src="{{ asset.object.image.url }}" class="media-object" style="width:200px">{% endif %}
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading"><a class="name" href="{% url 'asset' asset.object.id %}">{{ asset.object.title }}</a></h4>
+                        <p>{{ asset.object.short_desc }}</p>
+                        <br>
+                        <p><small><b>Manufacturer:</b> {{ asset.object.manufacturer }}</small></p>
+                        <p><small><b>Organization:</b> {{ asset.object.organization }}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                
+                {% endfor %}
+        </div>  
 
         {% if page.has_previous or page.has_next %}
             <div>

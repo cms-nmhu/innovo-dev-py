@@ -33,7 +33,7 @@ class Asset(models.Model):
     image = models.ImageField(null=True, blank=True)
     related_media = models.ManyToManyField(DocumentFile, blank=True)
 
-    contact_1_name = models.ForeignKey(User, null=True, blank=True)
+    contact_1_name = models.ForeignKey(User, null=True, blank=True, default='')
 
     date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_of_purchase = models.DateTimeField(null=True, blank=True)

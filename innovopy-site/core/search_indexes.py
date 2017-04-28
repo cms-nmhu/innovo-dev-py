@@ -10,6 +10,8 @@ class AssetIndex(indexes.SearchIndex, indexes.Indexable):
     room = indexes.CharField(model_attr='room')
     short_desc = indexes.CharField(model_attr='short_desc')
     full_desc = indexes.CharField(model_attr='full_desc')
+    contact_1_name = indexes.CharField(model_attr='contact_1_name')
+
 
     def get_model(self):
         return Asset

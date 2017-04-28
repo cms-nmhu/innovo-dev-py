@@ -41,6 +41,16 @@ DATABASES = {
     }
 }
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 
+        # 'haystack.backends.simple_backend.SimpleEngine', 
+        'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
 # STATIC_ROOT = os.path.join(PROJ_DIR.child('static'))
 
 MEDIA_ROOT = '/var/www/html/media/'

@@ -43,7 +43,10 @@
 				<div class="panel panel-info">
 				  <div class="panel-heading">Categories</div>
 	              <div class="panel-body">
-	              <p>...</p></div>
+	              	{% for cat in object.asset_categories.all %}
+	              <p> {{ cat.category }}</p>
+	                {% endfor %}
+	              </div>
 				</div>
 			</div>
 		</div>				

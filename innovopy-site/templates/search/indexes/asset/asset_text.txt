@@ -2,4 +2,6 @@
 {{ object.room }}
 {{ object.short_desc }}
 {{ object.full_desc }}
-
+{{ object.contact_1_name.first_name }}
+{{ object.contact_1_name.last_name }}
+{{ object.contact_1_name.email }}
