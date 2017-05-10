@@ -19,16 +19,16 @@
 			<div class="col-md-10 content">			
 
 				<div class="panel panel-info">
-				  <div class="panel-heading">Organizations</div>
+				  <div class="panel-heading">Suborganizations</div>
 	              <div class="panel-body">
 	              <ul class="grid_org">{% for k in orgs %} <li class="orgname" data-sort="{{ k }}"><a href="{% url 'unit' k.id %}" class="filter_btn" data-filter=".{{ k|slugify }}">{{ k }}</a></li> {% endfor %}</ul></div>
 				</div>
 
-				<div class="panel panel-info">
+				<!--<div class="panel panel-info">
 				  <div class="panel-heading">Categories</div>
 	              <div class="panel-body">
 	              <p></p></div>
-				</div>
+				</div>-->
 
 				<div class="panel panel-info">
 				  <div class="panel-heading">Manufacturers</div>

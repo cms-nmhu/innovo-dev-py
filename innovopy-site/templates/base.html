@@ -45,6 +45,7 @@
 			<div id="navbar" class="navbar-header navbar-collapse collapse navbar-right ">
 				
 				<ul class="nav navbar-nav">
+					<li><a href="/search" class="{% if request.path == "/innovo-sites/" %}bg-gray{% endif %}">Search</a></li>
 					<li><a href="{% url 'innovosite_list' %}" class="{% if request.path == "/innovo-sites/" %}bg-gray{% endif %}">sites</a></li>
 					<li><a href="{% url 'about' %}" class="{% if request.path == "/about/" %}bg-gray{% endif %}">about</a></li>
 					<li><a href="{% url 'contact' %}" class="{% if request.path == "/contact/" %}bg-gray{% endif %}">contact</a></li>

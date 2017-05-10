@@ -38,13 +38,13 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6 content">			
+			<div class="col-md-12 content">			
 
 				<div class="panel panel-info">
-				  <div class="panel-heading">Categories</div>
+				  <div class="panel-heading">Category</div>
 	              <div class="panel-body">
 	              	{% for cat in object.asset_categories.all %}
-	              <p> {{ cat.category }}</p>
+	                	<p> {{ cat.category }}</p>
 	                {% endfor %}
 	              </div>
 				</div>
