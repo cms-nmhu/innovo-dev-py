@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from haystack.forms import FacetedSearchForm
+from haystack.generic_views import FacetedSearchView
+
+# import debug_toolbar
+
 from core.views import HomeView, AboutView, ContactView, UserView
 from innovosite.views import InnovositeView, InnovositeListView
 from innovosite.views import SubOrganizationView, SubOrganizationListView, BuildingView
@@ -25,7 +30,8 @@ from asset.views import AssetView
 
 urlpatterns = [
 	url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^search/', include('haystack.urls')),
+    # url(r'^search/', include('haystack.urls')),
+    url(r'^search/', FacetedSearchView.as_view(form_class=FacetedSearchForm, facet_fields=['room', 'contact_1_name', 'manufacturer' ]), name='haystack_search'),
 	url(r'^about/$', AboutView.as_view(), name='about'),
 	url(r'^contact/$', ContactView.as_view(), name='contact'),
     
@@ -42,4 +48,11 @@ urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
 
+    url(r'^__debug__/', include(debug_toolbar.urls)),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+    # url(r'^$', FacetedSearchView(form_class=FacetedSearchForm, facet_fields=['author']), name='haystack_search'),
+
+    # url(r'^search/', FacetedSearchView.as_view(form_class=FacetedSearchForm, facet_fields=['room'],template_name='search/search.html', context_object_name='page_object'), name='haystack_search'),

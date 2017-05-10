@@ -6,11 +6,11 @@ from asset.models import Asset
 
 class AssetIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    title = indexes.CharField(model_attr='title')
+    title = indexes.CharField(model_attr='title', faceted=True)
     room = indexes.CharField(model_attr='room', default='', faceted=True)
     short_desc = indexes.CharField(model_attr='short_desc', default='')
     full_desc = indexes.CharField(model_attr='full_desc', default='')
-    contact_1_name = indexes.CharField(model_attr='contact_1_name', default='')
+    contact_1_name = indexes.CharField(model_attr='contact_1_name', default='', faceted=True)
     manufacturer = indexes.CharField(model_attr='manufacturer', default='')
 
 
