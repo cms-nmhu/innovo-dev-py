@@ -9,6 +9,7 @@ class AssetAdmin(admin.ModelAdmin):
 
 class AssetCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'asset', 'category')
+    list_editable = ['category', ]
     list_filter = ('asset', 'category')
 
 
