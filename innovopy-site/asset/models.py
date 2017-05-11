@@ -87,7 +87,6 @@ class AssetCategory(models.Model):
     category = models.ForeignKey(Category, related_name='categorized_assets')
 
 
-
 """ TODO: Modeling associations"""
 
 #  item -> tag
